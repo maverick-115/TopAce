@@ -1,0 +1,233 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Scenes/Avion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Scenes/Interfaz.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Fonts/batmfa__.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Sprites/mountains.jpeg" type="Texture" id=5]
+[ext_resource path="res://Assets/Scenes/Mundo.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends RichTextLabel
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _process(delta):
+
+	set_text(\"Velocity: \")
+	newline()
+	add_text(str(Global_Var.velocity))
+	newline()
+	add_text(\"Accion\" + Global_Var.Straccion)
+"
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 658.27, 28.5919 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( 270.856, -72.3033 )
+b = Vector2( -27.4384, -0.903015 )
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Area2D
+
+
+
+
+func _on_Area2D_area_exited(area):
+	Global_Var.gravity = 15
+"
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 333.011, 71.2357 )
+
+[node name="Mundo" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Avion" parent="." instance=ExtResource( 1 )]
+position = Vector2( 366.223, 642.633 )
+
+[node name="Camera2D" type="Camera2D" parent="Avion"]
+position = Vector2( 281.247, -271.929 )
+current = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.28
+drag_margin_top = 1.0
+drag_margin_bottom = 0.0
+
+[node name="Interfaz" parent="Avion/Camera2D" instance=ExtResource( 3 )]
+
+[node name="Button" type="Button" parent="Avion/Camera2D/Interfaz"]
+margin_left = 71.0
+margin_top = 665.0
+margin_right = 233.0
+margin_bottom = 696.0
+custom_fonts/font = SubResource( 1 )
+text = "Lanzar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Avion/Camera2D/Interfaz"]
+margin_top = 23.0
+margin_right = 1280.0
+margin_bottom = 463.0
+custom_fonts/normal_font = SubResource( 2 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="Avion/Camera2D/Interfaz"]
+margin_left = 273.0
+margin_top = 665.0
+margin_right = 392.0
+margin_bottom = 697.0
+text = "UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Avion/Camera2D/Interfaz"]
+position = Vector2( 466.482, 664 )
+normal = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control"]
+position = Vector2( 23.2624, 696.58 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D"]
+position = Vector2( 623.561, 0 )
+scale = Vector2( 20.4863, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D"]
+position = Vector2( 624.208, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Control"]
+position = Vector2( 1327.43, 696.58 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D3"]
+position = Vector2( 623.561, 0 )
+scale = Vector2( 20.4863, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D3"]
+position = Vector2( 624.208, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Control"]
+position = Vector2( 2575.85, 696.58 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D4"]
+position = Vector2( 623.561, 0 )
+scale = Vector2( 20.4863, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D4"]
+position = Vector2( 624.208, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Control"]
+position = Vector2( 3854.97, 696.58 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D5"]
+position = Vector2( 623.561, 0 )
+scale = Vector2( 20.4863, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D5"]
+position = Vector2( 624.208, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Control"]
+position = Vector2( 5134.09, 696 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D6"]
+position = Vector2( 623.561, 0 )
+scale = Vector2( 20.4863, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D6"]
+position = Vector2( 624.208, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Control"]
+position = Vector2( 557.705, 642.633 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Control/StaticBody2D2"]
+position = Vector2( 76.9525, 3.17334 )
+scale = Vector2( 3.40476, 1.09917 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D2"]
+position = Vector2( 0, 38.3467 )
+shape = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="Control"]
+position = Vector2( -3, 0 )
+script = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+position = Vector2( 423.791, 588.425 )
+shape = SubResource( 7 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 1660, 0 )
+
+[node name="mountains" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -593.199, -285.962 )
+scale = Vector2( 5.86525, 5.86525 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="PosiciondeInicio" type="Position2D" parent="."]
+position = Vector2( 366.223, 642.633 )
+
+[connection signal="area_exited" from="Avion/Area2D" to="Control/Area2D" method="_on_Area2D_area_exited"]
+[connection signal="pressed" from="Avion/Camera2D/Interfaz/Button" to="Avion" method="_on_Button_pressed"]
+[connection signal="pressed" from="Avion/Camera2D/Interfaz/Button2" to="Avion" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Avion/Camera2D/Interfaz/TouchScreenButton" to="Avion" method="_on_TouchScreenButton_pressed"]
+
+[editable path="Avion"]
